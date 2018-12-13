@@ -1,0 +1,10 @@
+{
+  "name": "contao-choices-bundle",
+  "version": "1.0.0",
+  "description": "This bundle offers support for choices.js for the Contao CMS.",
+  "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
+  "license": "LGPL-3.0-or-later",
+  "dependencies": {
+    "choices.js": "^4.1"
+  }
+}
