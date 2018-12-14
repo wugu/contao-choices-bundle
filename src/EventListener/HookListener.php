@@ -12,5 +12,10 @@ class HookListener implements FrameworkAwareInterface, ContainerAwareInterface
     use FrameworkAwareTrait;
     use ContainerAwareTrait;
 
+    public function getAttributesFromDca($attributes, $dca)
+    {
+//        $attributes['data-choices'] = 1;
 
+        return $attributes;
+    }
 }
