@@ -1,10 +1,11 @@
 huh_encore:
   encore:
     entries:
-      - { name: "contao-choices-bundle", file: "vendor/heimrichhannot/contao-choices-bundle/src/Resources/assets/js/src/contao-choices-bundle.js" }
-      - { name: "contao-choices-bundle-theme", requiresCss: true, file: "vendor/heimrichhannot/contao-choices-bundle/src/Resources/assets/js/src/contao-choices-bundle-theme.js" }
+      - { name: "contao-choices-bundle", file: "vendor/heimrichhannot/contao-choices-bundle/src/Resources/assets/js/contao-choices-bundle.js" }
+      - { name: "contao-choices-bundle-theme", requiresCss: true, file: "vendor/heimrichhannot/contao-choices-bundle/src/Resources/assets/js/contao-choices-bundle-theme.js" }
     legacy:
       js:
-        - choices
+        - huh_components_choices
+        - contao-choices-bundle
       css:
-        - choices
+        - huh_components_choices

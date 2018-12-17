@@ -32,6 +32,10 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
             $loadAfter[] = 'HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle';
         }
 
+        if (class_exists('HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle')) {
+            $loadAfter[] = 'HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle';
+        }
+
         return [
             BundleConfig::create(HeimrichHannotContaoChoicesBundle::class)->setLoadAfter($loadAfter),
         ];
@@ -49,7 +53,7 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
 
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
-        // support for core and formhybrid
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/listeners.yml');
+        $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/services.yml');
     }
 }
