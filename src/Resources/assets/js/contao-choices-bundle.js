@@ -1,5 +1,5 @@
 import Choices from 'choices.js';
-import u from 'umbrellajs';
+import {u, ajax} from 'umbrellajs';
 
 class ChoicesBundle {
     static init() {
