@@ -5,14 +5,14 @@
   "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
   "license": "LGPL-3.0-or-later",
   "dependencies": {
-    "choices.js": "^4.1"
+    "choices.js": "^4.1",
+    "umbrellajs": "^2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2",
     "@babel/core": "^7.2",
     "@babel/preset-env": "^7.2",
     "babel-minify": "^0.5",
-    "umbrellajs": "^2.0",
     "babel-plugin-transform-remove-import": "^1.0.0"
   },
   "scripts": {
