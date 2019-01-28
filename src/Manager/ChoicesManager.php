@@ -24,7 +24,8 @@ class ChoicesManager implements FrameworkAwareInterface, ContainerAwareInterface
             'loadingText'    => $GLOBALS['TL_LANG']['MSC']['choices.js']['loadingText'],
             'noResultsText'  => $GLOBALS['TL_LANG']['MSC']['choices.js']['noResultsText'],
             'noChoicesText'  => $GLOBALS['TL_LANG']['MSC']['choices.js']['noChoicesText'],
-            'itemSelectText' => ''
+            'itemSelectText' => '',
+            'shouldSort'     => false,
         ];
 
         $options = array_merge($defaultOptions, $customOptions);
