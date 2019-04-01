@@ -1,4 +1,8 @@
 services:
+  _defaults:
+    public: true
+    autowire: true
+
   _instanceof:
     Contao\CoreBundle\Framework\FrameworkAwareInterface:
       calls:
@@ -7,14 +11,8 @@ services:
       calls:
         - ["setContainer", ["@service_container"]]
 
-  huh.choices.event_listener.data_container.filter_config_element_listener:
-    class: HeimrichHannot\ChoicesBundle\EventListener\DataContainer\FilterConfigElementListener
-    public: true
-    autowire: true
   huh.choices.event_listener.hook_listener:
     class: HeimrichHannot\ChoicesBundle\EventListener\HookListener
-    public: true
-    autowire: true
   HeimrichHannot\ChoicesBundle\EventListener\AdjustFilterOptionsEventListener:
     tags:
       - { name: kernel.event_listener, event: huh.filter.event.adjust_filter_options_event, method: onAdjustFilterOptions }

@@ -2,23 +2,34 @@
 
 namespace HeimrichHannot\ChoicesBundle\EventListener;
 
-use Contao\System;
 use HeimrichHannot\FilterBundle\Event\AdjustFilterOptionsEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AdjustFilterOptionsEventListener
 {
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
     public function onAdjustFilterOptions(AdjustFilterOptionsEvent $event)
     {
         $filter = $event->getConfig()->getFilter();
         $table = $filter['dataContainer'];
 
-        System::getContainer()->get('huh.utils.dca')->loadDc($table);
+        $this->container->get('huh.utils.dca')->loadDc($table);
 
         $dca = &$GLOBALS['TL_DCA'][$table];
 
         $element = $event->getElement();
 
-        $config = System::getContainer()->getParameter('huh.filter');
+        $config = $this->container->getParameter('huh.filter');
 
         if (!isset($config['filter']['types']))
         {
@@ -63,13 +74,13 @@ class AdjustFilterOptionsEventListener
         // try to get options from dca
         if ($element->field && isset($dca['fields'][$element->field]['eval']['choicesOptions']))
         {
-            $choicesOptions = System::getContainer()->get('huh.choices.manager.choices_manager')->getOptionsAsArray(
+            $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray(
                 $dca['fields'][$element->field]['eval']['choicesOptions']
             );
         }
         else
         {
-            $choicesOptions = System::getContainer()->get('huh.choices.manager.choices_manager')->getOptionsAsArray();
+            $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray();
         }
 
         $options['attr']['data-choices'] = '1';

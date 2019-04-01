@@ -13,11 +13,8 @@ use Contao\CoreBundle\Framework\FrameworkAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ChoicesManager implements FrameworkAwareInterface, ContainerAwareInterface
+class ChoicesManager
 {
-    use FrameworkAwareTrait;
-    use ContainerAwareTrait;
-
     public function getOptionsAsArray(array $customOptions = [])
     {
         $defaultOptions = [

@@ -2,17 +2,9 @@
 
 namespace HeimrichHannot\ChoicesBundle\EventListener;
 
-use Contao\CoreBundle\Framework\FrameworkAwareInterface;
-use Contao\CoreBundle\Framework\FrameworkAwareTrait;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-
-class HookListener implements FrameworkAwareInterface, ContainerAwareInterface
+class HookListener
 {
-    use FrameworkAwareTrait;
-    use ContainerAwareTrait;
-
-    public function getAttributesFromDca($attributes, $dca)
+    public function onGetAttributesFromDca($attributes, $dca)
     {
 //        $attributes['data-choices'] = 1;
 

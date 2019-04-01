@@ -1,24 +1,33 @@
 <?php
-
-/*
- * Copyright (c) 2018 Heimrich & Hannot GmbH
+/**
+ * Contao Open Source CMS
  *
- * @license LGPL-3.0-or-later
+ * Copyright (c) 2019 Heimrich & Hannot GmbH
+ *
+ * @author  Thomas Körner <t.koerner@heimrich-hannot.de>
+ * @license http://www.gnu.org/licences/lgpl-3.0.html LGPL
  */
 
-namespace HeimrichHannot\ChoicesBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\Framework\FrameworkAwareInterface;
-use Contao\CoreBundle\Framework\FrameworkAwareTrait;
+namespace HeimrichHannot\ChoicesBundle\DataContainer;
+
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use HeimrichHannot\FilterBundle\Filter\Type\TextConcatType;
 use HeimrichHannot\FilterBundle\Filter\Type\TextType;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class FilterConfigElementListener implements FrameworkAwareInterface, ContainerAwareInterface
+class FilterConfigElementContainer
 {
-    use FrameworkAwareTrait;
-    use ContainerAwareTrait;
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
 
     public function addChoicesFieldToTypePalettes(array &$dca)
     {
