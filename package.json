@@ -5,18 +5,14 @@
   "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
   "license": "LGPL-3.0-or-later",
   "dependencies": {
-    "choices.js": "^4.1",
-    "umbrellajs": "^2.0"
+    "@hundh/contao-choices-bundle": "^0.4.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2",
-    "@babel/core": "^7.2",
-    "@babel/preset-env": "^7.2",
-    "babel-minify": "^0.5",
-    "babel-plugin-transform-remove-import": "^1.0.0"
+    "@symfony/webpack-encore": "^0.24"
   },
   "scripts": {
-    "build": "babel src/Resources/assets/js --out-dir src/Resources/public/js"
+    "build-dev": "yarn encore dev",
+    "build-production": "yarn encore production"
   },
   "browserslist": [
     "last 2 versions",

@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:heimrichhannot/contao-choices-bundle.git",
-    "directory": "src/Resources/assets/package"
+    "directory": "package"
   },
   "author": "Heimrich & Hannot GmbH",
   "license": "MIT",
