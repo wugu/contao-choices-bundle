@@ -51,12 +51,22 @@ class HookListener
             return $attributes;
         }
 
-        $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->getPageParents());
-        if (true === (bool) $property)
+        if ($attributes['type'] === 'select')
         {
-            $attributes['data-choices'] = 1;
+            $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->getPageParents());
+            if (true === (bool) $property)
+            {
+                $attributes['data-choices'] = 1;
+            }
         }
-
+        if ($attributes['type'] === 'text')
+        {
+            $property = $this->dcaUtil->getOverridableProperty('useChoicesForText', $this->getPageParents());
+            if (true === (bool) $property)
+            {
+                $attributes['data-choices'] = 1;
+            }
+        }
         return $attributes;
     }
 }

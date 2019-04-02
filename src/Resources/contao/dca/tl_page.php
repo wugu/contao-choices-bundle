@@ -15,14 +15,14 @@ $dca['palettes']['root'] = str_replace('includeLayout', 'includeLayout,useChoice
 $dca['palettes']['regular'] = str_replace('includeLayout', 'includeLayout,overrideUseChoicesForSelect,overrideUseChoicesForText', $dca['palettes']['regular']);
 
 $dca['fields']['useChoicesForSelect'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_layout']['useChoicesForSelect'],
+    'label'     => &$GLOBALS['TL_LANG']['tl_page']['useChoicesForSelect'],
     'exclude'   => true,
     'inputType' => 'checkbox',
     'eval'      => ['tl_class' => 'w50'],
     'sql'       => "char(1) NOT NULL default ''",
 ];
 $dca['fields']['useChoicesForText'] = [
-    'label'     => &$GLOBALS['TL_LANG']['tl_layout']['useChoicesForText'],
+    'label'     => &$GLOBALS['TL_LANG']['tl_page']['useChoicesForText'],
     'exclude'   => true,
     'inputType' => 'checkbox',
     'eval'      => ['tl_class' => 'w50'],
