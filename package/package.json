@@ -1,0 +1,16 @@
+{
+  "name": "@hundh/contao-choices-bundle",
+  "version": "0.4.0",
+  "description": "This package contains the frontend assets of the composer bundle heimrichhannot/contao-choices-bundle.",
+  "main": "js/contao-choices-bundle.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:heimrichhannot/contao-choices-bundle.git",
+    "directory": "src/Resources/assets/package"
+  },
+  "author": "Heimrich & Hannot GmbH",
+  "license": "MIT",
+  "dependencies": {
+    "choices.js": "^4.1"
+  }
+}
