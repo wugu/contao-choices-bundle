@@ -20,6 +20,15 @@ import ChoicesBundle from '@hundh/contao-choices-bundle'
 ChoicesBundle.init();
 ```
 
+Choices.js will be added to all select and text fields with attribute `data-choices=1`.
+
+### Options
+You can pass options to Choices constructor by adding them json_encoded to `data-choices-options` attribute.
+
+### Translations
+Translations can be passed as options to Choices. For callback translation (`addItemText`, `maxItemText`) two additional options added: `addItemTextString` and `maxItemTextString`.
+
+
 ## API
 
 ### init

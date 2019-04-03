@@ -1,6 +1,7 @@
 import Choices from 'choices.js';
 
-class ChoicesBundle {
+class ChoicesBundle
+{
     static init()
     {
         if (!ChoicesBundle.hasOwnProperty('choiceInstances'))
@@ -13,15 +14,32 @@ class ChoicesBundle {
             return;
         }
         elements.forEach((element) => {
-            let options = {};
-            if (element.hasAttribute('data-choices-options')){
-                options.assign(JSON.parse(element.getAttribute('data-choices-options')));
+            let defaultOptions = {};
+            if (element.hasAttribute('data-choices-options')) {
+                let options = JSON.parse(element.getAttribute('data-choices-options'));
+                if (options.hasOwnProperty('addItemTextString'))
+                {
+                    options.addItemText = (value) => {
+                        return options.addItemTextString;
+                    },
+                    delete options.addItemTextString;
+                }
+                if (options.hasOwnProperty('maxItemTextString'))
+                {
+                    options.maxItemText = (maxItemCount) => {
+                        return options.maxItemTextString;
+                    },
+                    delete options.maxItemTextString;
+                }
+                defaultOptions = Object.assign(defaultOptions, options);
             }
-            let choice = new Choices(element, options);
+            let choice = new Choices(element, defaultOptions);
             ChoicesBundle.choiceInstances.push({element: element, instance: choice})
         })
     }
-    static getChoiceInstances() {
+
+    static getChoiceInstances()
+    {
         return ChoicesBundle.choiceInstances;
     }
 }

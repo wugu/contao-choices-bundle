@@ -67,6 +67,14 @@ class HookListener
                 $attributes['data-choices'] = 1;
             }
         }
+
+        $customOptions = [];
+        if (isset($attributes['choicesOptions']) && is_array($attributes['choicesOptions'])) {
+            $customOptions = $attributes['choicesOptions'];
+        }
+
+        $attributes['data-choices-options'] = json_encode($this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray($customOptions));
+
         return $attributes;
     }
 }

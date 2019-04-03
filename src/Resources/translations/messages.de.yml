@@ -1,0 +1,5 @@
+huh.choices:
+  library:
+    noResultsText: 'No results found'
+    noChoicesText: 'No choices to choose from'
+    itemSelectText: 'Press to select'

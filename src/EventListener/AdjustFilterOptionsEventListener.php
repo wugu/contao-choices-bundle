@@ -71,17 +71,7 @@ class AdjustFilterOptionsEventListener
 
         $options = $event->getOptions();
 
-        // try to get options from dca
-        if ($element->field && isset($dca['fields'][$element->field]['eval']['choicesOptions']))
-        {
-            $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray(
-                $dca['fields'][$element->field]['eval']['choicesOptions']
-            );
-        }
-        else
-        {
-            $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray();
-        }
+        $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray([], $table, $element->field ?: '');
 
         $options['attr']['data-choices'] = '1';
         $options['attr']['data-choices-options'] = json_encode($choicesOptions);

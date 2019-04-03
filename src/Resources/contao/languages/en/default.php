@@ -6,10 +6,10 @@ $lang = &$GLOBALS['TL_LANG']['MSC'];
  * Fields
  */
 $lang['choices.js'] = [
-    'loadingText' => 'Lädt...',
-    'noResultsText' => 'Keine Ergebnisse gefunden',
-    'noChoicesText' => 'Keine Auswahlmöglichkeiten gefunden',
-    'itemSelectText' => 'Zur Auswahl anklicken',
-    'addItemText' => 'Eingabetaste drücken um <b>"${value}"</b> hinzuzufügen',
-    'maxItemText' => 'Es können nur ${maxItemCount} Werte hinzugefügt werden.'
+    'loadingText' => 'Loading...',
+    'noResultsText' => 'No results found',
+    'noChoicesText' => 'No choices to choose from',
+    'itemSelectText' => 'Press to select',
+    'addItemText' => 'Press Enter to add <b>"${value}"</b>',
+    'maxItemText' => 'Only ${maxItemCount} values can be added'
 ];
