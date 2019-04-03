@@ -5,7 +5,7 @@
   "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
   "license": "LGPL-3.0-or-later",
   "dependencies": {
-    "@hundh/contao-choices-bundle": "^0.4.0"
+    "@hundh/contao-choices-bundle": "^0.5.0"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.24"
