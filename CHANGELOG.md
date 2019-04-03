@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2019-04-03
+
+* fixed filter bundle support
+* fixed missing service
+
 ## [0.1.1] - 2019-04-03
 
 * updated dependencies

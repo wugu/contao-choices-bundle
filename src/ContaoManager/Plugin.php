@@ -55,5 +55,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
     {
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/listeners.yml');
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/services.yml');
+        $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/datacontainers.yml');
     }
 }

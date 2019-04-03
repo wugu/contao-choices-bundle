@@ -1,6 +1,6 @@
 <?php
 
-if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('\HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle'))
+if (\Contao\System::getContainer()->get('huh.utils.container')->isBundleActive('HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle'))
 {
     $dca = &$GLOBALS['TL_DCA']['tl_filter_config_element'];
 
