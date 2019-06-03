@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2019-06-03
+
+### Fixed
+
+* check if objPage is not null when trying to get properties from page
+
 ## [0.1.2] - 2019-04-03
 
 * fixed filter bundle support

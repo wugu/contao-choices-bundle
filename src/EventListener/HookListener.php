@@ -27,13 +27,14 @@ class HookListener
 
     protected function getPageParents()
     {
-        if (null === $this->pageParents)
-        {
-            /** @var PageModel $objPage */
-            global $objPage;
+        /** @var PageModel $objPage */
+        global $objPage;
 
+        if (null === $this->pageParents && null !== $objPage)
+        {
             $this->pageParents = $this->container->get('huh.utils.model')->findParentsRecursively('pid', 'tl_page', $objPage);
         }
+
         return $this->pageParents;
     }
 
@@ -51,22 +52,28 @@ class HookListener
             return $attributes;
         }
 
-        if ($attributes['type'] === 'select')
+        $this->getPageParents();
+
+        if(null !== $this->pageParents)
         {
-            $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->getPageParents());
-            if (true === (bool) $property)
+            if ($attributes['type'] === 'select')
             {
-                $attributes['data-choices'] = 1;
+                $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->pageParents);
+                if (true === (bool) $property)
+                {
+                    $attributes['data-choices'] = 1;
+                }
+            }
+            if ($attributes['type'] === 'text')
+            {
+                $property = $this->dcaUtil->getOverridableProperty('useChoicesForText', $this->pageParents);
+                if (true === (bool) $property)
+                {
+                    $attributes['data-choices'] = 1;
+                }
             }
         }
-        if ($attributes['type'] === 'text')
-        {
-            $property = $this->dcaUtil->getOverridableProperty('useChoicesForText', $this->getPageParents());
-            if (true === (bool) $property)
-            {
-                $attributes['data-choices'] = 1;
-            }
-        }
+
 
         $customOptions = [];
         if (isset($attributes['choicesOptions']) && is_array($attributes['choicesOptions'])) {
