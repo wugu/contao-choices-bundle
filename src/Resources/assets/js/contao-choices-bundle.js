@@ -1,3 +1,4 @@
-import { ChoicesBundle } from '@hundh/contao-choices-bundle'
+import { ChoicesBundle } from '../../npm-package';
 
-ChoicesBundle.init();
+document.addEventListener('DOMContentLoaded', ChoicesBundle.init);
+document.addEventListener('filterAjaxComplete', ChoicesBundle.init);
