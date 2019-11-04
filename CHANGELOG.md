@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2019-11-04
+- fixed copy and paste error :)
+
 ## [0.2.0] - 2019-11-04
 - assets now only added when needed
 - moved filter bundle specific dca code to loadDataContainer hook
