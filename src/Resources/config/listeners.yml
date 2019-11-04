@@ -3,17 +3,13 @@ services:
     public: true
     autowire: true
 
-  _instanceof:
-    Contao\CoreBundle\Framework\FrameworkAwareInterface:
-      calls:
-        - ["setFramework", ["@contao.framework"]]
-    Symfony\Component\DependencyInjection\ContainerAwareInterface:
-      calls:
-        - ["setContainer", ["@service_container"]]
-
-  huh.choices.event_listener.hook_listener:
-    class: HeimrichHannot\ChoicesBundle\EventListener\HookListener
-
   HeimrichHannot\ChoicesBundle\EventListener\AdjustFilterOptionsEventListener:
+    public: false
     tags:
       - { name: kernel.event_listener, event: huh.filter.event.adjust_filter_options_event, method: onAdjustFilterOptions }
+
+
+  # Hook Listener
+
+  HeimrichHannot\ChoicesBundle\EventListener\HookListener: ~
+  HeimrichHannot\ChoicesBundle\EventListener\LoadDataContainerListener: ~

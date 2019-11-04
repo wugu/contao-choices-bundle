@@ -4,6 +4,7 @@ namespace HeimrichHannot\ChoicesBundle\EventListener;
 
 use Contao\DataContainer;
 use Contao\PageModel;
+use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class HookListener
@@ -17,12 +18,17 @@ class HookListener
      * @var bool
      */
     private $isFrontend;
+    /**
+     * @var FrontendAsset
+     */
+    private $frontendAsset;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, FrontendAsset $frontendAsset)
     {
         $this->container = $container;
         $this->dcaUtil = $container->get('huh.utils.dca');
         $this->isFrontend = $container->get('huh.utils.container')->isFrontend();
+        $this->frontendAsset = $frontendAsset;
     }
 
     protected function getPageParents()
@@ -61,6 +67,7 @@ class HookListener
                 $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->pageParents);
                 if (true === (bool) $property)
                 {
+                    $this->frontendAsset->addFrontendAssets();
                     $attributes['data-choices'] = 1;
                 }
             }
@@ -69,11 +76,11 @@ class HookListener
                 $property = $this->dcaUtil->getOverridableProperty('useChoicesForText', $this->pageParents);
                 if (true === (bool) $property)
                 {
+                    $this->frontendAsset->addFrontendAssets();
                     $attributes['data-choices'] = 1;
                 }
             }
         }
-
 
         $customOptions = [];
         if (isset($attributes['choicesOptions']) && is_array($attributes['choicesOptions'])) {

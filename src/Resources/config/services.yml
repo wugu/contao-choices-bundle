@@ -1,6 +1,10 @@
 services:
+  _defaults:
+    public: true
+    autowire: true
 
   huh.choices.manager.choices_manager:
     class: HeimrichHannot\ChoicesBundle\Manager\ChoicesManager
-    public: true
-    autowire: true
+  HeimrichHannot\ChoicesBundle\Manager\ChoicesManager: '@huh.choices.manager.choices_manager'
+
+  HeimrichHannot\ChoicesBundle\Asset\FrontendAsset: ~

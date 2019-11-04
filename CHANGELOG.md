@@ -1,15 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.1.4] - 2019-06-20
+## [0.2.0] - 2019-11-04
+- assets now only added when needed
+- moved filter bundle specific dca code to loadDataContainer hook
+- updated english translations
+- some refactoring due internal coding standards and symfony 4 preparation
+- fixed install error
 
-### Fixed
-- event calling also in generated legacy code
+## [0.1.4] - 2019-06-20
+- fixed event calling also in generated legacy code
 
 ## [0.1.3] - 2019-06-03
-
-### Fixed
-- check if objPage is not null when trying to get properties from page
+- fixed check if objPage is not null when trying to get properties from page
 
 ## [0.1.2] - 2019-04-03
 - fixed filter bundle support

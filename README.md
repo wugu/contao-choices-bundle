@@ -14,11 +14,20 @@ This bundle offers support for the JavaScript library [Choices](https://github.c
 
 1. Install via composer: `composer require heimrichhannot/contao-choices-bundle`.
 1. Update Database
+1. Encore Bundle: Prepare and generate encore entries
 1. You can now activate Choices for select and text inputs in root page settings (Layout Settings) and override the settings in child pages.
-1. If you use Encore Bundle: Add and activate `contao-choices-bundle` and `contao-choices-bundle-theme` on root page or the pages, where you want to use it.
 
 ## Developers
 
 ### Assets
 
 Bundle assets are provided as [yarn package](https://yarn.pm/@hundh/contao-choices-bundle). Sources and JavaScript documentation can be found in [`src/Resources/npm-package`](https://github.com/heimrichhannot/contao-choices-bundle/tree/master/src/Resources/npm-package).
+
+### Custom usage
+If you use the library in a different way than this bundle provides (e.g. a custom module), use the frontend asset service to dynamically add the frontend assets. 
+
+```php
+/** @var Symfony\Component\DependencyInjection\ContainerInterface $container **/
+$container->get(FrontendAsset::class)->addFrontendAssets();
+```
+

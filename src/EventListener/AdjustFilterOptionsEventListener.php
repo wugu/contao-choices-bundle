@@ -2,6 +2,7 @@
 
 namespace HeimrichHannot\ChoicesBundle\EventListener;
 
+use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
 use HeimrichHannot\FilterBundle\Event\AdjustFilterOptionsEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -11,10 +12,15 @@ class AdjustFilterOptionsEventListener
      * @var ContainerInterface
      */
     protected $container;
+    /**
+     * @var FrontendAsset
+     */
+    private $frontendAsset;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, FrontendAsset $frontendAsset)
     {
         $this->container = $container;
+        $this->frontendAsset = $frontendAsset;
     }
 
 
@@ -69,10 +75,11 @@ class AdjustFilterOptionsEventListener
                 break;
         }
 
+        $this->frontendAsset->addFrontendAssets();
+
         $options = $event->getOptions();
 
         $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray([], $table, $element->field ?: '');
-
         $options['attr']['data-choices'] = '1';
         $options['attr']['data-choices-options'] = json_encode($choicesOptions);
 

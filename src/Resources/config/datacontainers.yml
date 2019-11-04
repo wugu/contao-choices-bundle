@@ -3,5 +3,4 @@ services:
     public: true
     autowire: true
 
-  huh.choices.data_container.filter_config_element_container:
-    class: HeimrichHannot\ChoicesBundle\DataContainer\FilterConfigElementContainer
+  HeimrichHannot\ChoicesBundle\DataContainer\FilterConfigElementContainer: ~
