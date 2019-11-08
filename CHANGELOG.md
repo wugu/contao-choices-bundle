@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2019-11-08
+- fixed current page weren't taken in account when checking if choices is activated for current page
+
 ## [0.2.1] - 2019-11-04
 - fixed copy and paste error :)
 

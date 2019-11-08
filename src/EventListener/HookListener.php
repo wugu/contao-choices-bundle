@@ -31,7 +31,7 @@ class HookListener
         $this->frontendAsset = $frontendAsset;
     }
 
-    protected function getPageParents()
+    protected function getPageWithParents()
     {
         /** @var PageModel $objPage */
         global $objPage;
@@ -39,6 +39,7 @@ class HookListener
         if (null === $this->pageParents && null !== $objPage)
         {
             $this->pageParents = $this->container->get('huh.utils.model')->findParentsRecursively('pid', 'tl_page', $objPage);
+            $this->pageParents[] = $objPage;
         }
 
         return $this->pageParents;
@@ -58,7 +59,7 @@ class HookListener
             return $attributes;
         }
 
-        $this->getPageParents();
+        $this->getPageWithParents();
 
         if(null !== $this->pageParents)
         {

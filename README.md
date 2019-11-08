@@ -4,7 +4,7 @@ This bundle offers support for the JavaScript library [Choices](https://github.c
 
 ## Features
 
-- activate choosen support on page level (with inheritance and override option)
+- activate choices support on page level (with inheritance and override option)
 - adds the data attributes necessary for the library using the `getAttributesFromDca` hook (when activated for page)
 - [Encore Bundle](https://github.com/heimrichhannot/contao-encore-bundle) support
 - [Filter Bundle](https://github.com/heimrichhannot/contao-filter-bundle) support
@@ -15,7 +15,14 @@ This bundle offers support for the JavaScript library [Choices](https://github.c
 1. Install via composer: `composer require heimrichhannot/contao-choices-bundle`.
 1. Update Database
 1. Encore Bundle: Prepare and generate encore entries
-1. You can now activate Choices for select and text inputs in root page settings (Layout Settings) and override the settings in child pages.
+
+## Usage
+
+Active or deactivate choices support on page level (Layout section). You can activate/deactivate it separately for select and text boxes. You can overwrite settings from a parent page.
+
+### Filter Bundle
+
+Choices.js support it automatically added to choice type form fields. It can be disabled in the type configuration. For other config types it can be activated in the configuration.
 
 ## Developers
 
