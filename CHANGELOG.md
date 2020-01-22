@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2020-01-21
+- added CustomizeChoicesOptionsEvent
+- updated encore bundle config for encore bundle >= 1.5
+
 ## [0.2.2] - 2019-11-08
 - fixed current page weren't taken in account when checking if choices is activated for current page
 

@@ -10,6 +10,5 @@ services:
 
 
   # Hook Listener
-
-  HeimrichHannot\ChoicesBundle\EventListener\HookListener: ~
+  HeimrichHannot\ChoicesBundle\EventListener\GetAttributesFromDcaListener: ~
   HeimrichHannot\ChoicesBundle\EventListener\LoadDataContainerListener: ~

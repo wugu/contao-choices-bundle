@@ -3,8 +3,11 @@
 namespace HeimrichHannot\ChoicesBundle\EventListener;
 
 use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
+use HeimrichHannot\ChoicesBundle\Event\CustomizeChoicesOptionsEvent;
+use HeimrichHannot\ChoicesBundle\Manager\ChoicesManager;
 use HeimrichHannot\FilterBundle\Event\AdjustFilterOptionsEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AdjustFilterOptionsEventListener
 {
@@ -16,16 +19,27 @@ class AdjustFilterOptionsEventListener
      * @var FrontendAsset
      */
     private $frontendAsset;
+    /**
+     * @var ChoicesManager
+     */
+    private $choicesManager;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
-    public function __construct(ContainerInterface $container, FrontendAsset $frontendAsset)
+    public function __construct(ContainerInterface $container, FrontendAsset $frontendAsset, ChoicesManager $choicesManager, EventDispatcherInterface $eventDispatcher)
     {
         $this->container = $container;
         $this->frontendAsset = $frontendAsset;
+        $this->choicesManager = $choicesManager;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
 
     public function onAdjustFilterOptions(AdjustFilterOptionsEvent $event)
     {
+        $this->container->get(GetAttributesFromDcaListener::class)->close();
         $filter = $event->getConfig()->getFilter();
         $table = $filter['dataContainer'];
 
@@ -79,7 +93,12 @@ class AdjustFilterOptionsEventListener
 
         $options = $event->getOptions();
 
-        $choicesOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray([], $table, $element->field ?: '');
+        $choicesOptions = $this->choicesManager->getOptionsAsArray([], $table, $element->field ?: '');
+
+        $customizeChoicesOptionsEvent = new CustomizeChoicesOptionsEvent($choicesOptions, [], null);
+        $customizeChoicesOptionsEvent->setAdjustFilterOptionsEvent(clone $event);
+        $this->eventDispatcher->dispatch(CustomizeChoicesOptionsEvent::NAME, $customizeChoicesOptionsEvent);
+
         $options['attr']['data-choices'] = '1';
         $options['attr']['data-choices-options'] = json_encode($choicesOptions);
 

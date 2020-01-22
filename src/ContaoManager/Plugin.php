@@ -16,6 +16,8 @@ use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use Contao\ManagerPlugin\Config\ContainerBuilder;
 use Contao\ManagerPlugin\Config\ExtensionPluginInterface;
 use HeimrichHannot\ChoicesBundle\HeimrichHannotContaoChoicesBundle;
+use HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle;
+use HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle;
 use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -29,11 +31,11 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
         $loadAfter = [ContaoCoreBundle::class];
 
         if (class_exists('HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle')) {
-            $loadAfter[] = 'HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle';
+            $loadAfter[] = HeimrichHannotContaoEncoreBundle::class;
         }
 
         if (class_exists('HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle')) {
-            $loadAfter[] = 'HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle';
+            $loadAfter[] = HeimrichHannotContaoFilterBundle::class;
         }
 
         return [
