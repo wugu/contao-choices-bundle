@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2020-01-23
+- updated library to version 9.0.1
+- library now bundle with this bundle instead of loading an external library
+- added two javascript events
+- renamed asset entries
+
 ## [0.3.0] - 2020-01-21
 - added CustomizeChoicesOptionsEvent
 - updated encore bundle config for encore bundle >= 1.5

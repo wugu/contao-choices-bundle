@@ -1,0 +1,22 @@
+{
+  "entrypoints": {
+    "contao-choices-bundle": {
+      "css": [
+        "/bundles/heimrichhannotcontaochoices/assets/choices.css"
+      ],
+      "js": [
+        "/bundles/heimrichhannotcontaochoices/assets/choices.js",
+        "/bundles/heimrichhannotcontaochoices/assets/contao-choices-bundle.js"
+      ]
+    },
+    "contao-choices-bundle-theme": {
+      "css": [
+        "/bundles/heimrichhannotcontaochoices/assets/choices.css"
+      ],
+      "js": [
+        "/bundles/heimrichhannotcontaochoices/assets/choices.js",
+        "/bundles/heimrichhannotcontaochoices/assets/contao-choices-bundle-theme.js"
+      ]
+    }
+  }
+}

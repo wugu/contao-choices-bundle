@@ -44,3 +44,36 @@ Returns an array of objects containing element and choice instance.
 [{element: HTMLElement, instance: ChoiceInstance},...]
 ```
 
+## Events
+
+Following events can be used to further customize the choices instances: 
+
+Event name | Data | Description
+---------- | ---- | -----------
+hundhChoicesOptions | options | Customize options before instantiating the choice object.
+hundhChoicesNewInstance | instance | Is dispatched right after the choices instance is create.
+
+Example:
+
+```javascript
+/**
+ * @param { CustomEvent } event
+ */
+function onHundhChoicesOptions(event) {
+    let options = event.detail.options;
+    // Customize options
+}
+
+/**
+ * @param { CustomEvent } event
+ */
+function onHundhChoicesNewInstance(event) {
+    let choicesInstance = event.detail.instance;
+    // Work with the choices instance
+}
+
+document.addEventListener('hundhChoicesOptions', onHundhChoicesOptions);
+document.addEventListener('hundhChoicesNewInstance', onHundhChoicesNewInstance);
+
+```
+

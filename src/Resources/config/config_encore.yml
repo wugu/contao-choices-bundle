@@ -4,7 +4,7 @@ huh_encore:
     - { name: "contao-choices-bundle-theme", requires_css: true, file: "vendor/heimrichhannot/contao-choices-bundle/src/Resources/assets/js/contao-choices-bundle-theme.js" }
   unset_global_keys:
     js:
-      - huh_components_choices
       - contao-choices-bundle
+      - contao-choices-bundle--library
     css:
-      - huh_components_choices
+      - contao-choices-bundle

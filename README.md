@@ -1,6 +1,6 @@
 # Contao Choices Bundle
 
-This bundle offers support for the JavaScript library [Choices](https://github.com/jshjohnson/Choices) for the Contao CMS.
+This bundle offers support for the JavaScript library [Choices.js](https://github.com/jshjohnson/Choices) for the Contao CMS.
 
 ## Features
 
@@ -26,7 +26,7 @@ Choices.js support it automatically added to choice type form fields. It can be 
 
 ## Developers
 
-### Customize choices.js options
+### PHP Events
 
 To customize options passed to the choices.js library, you can use the `CustomizeChoicesOptionsEvent`. Register an event listener to `huh.choices.customize_choices_options`. This work for 'normal' widgets and filter bundle fields. In your event listener you check, if the event comes from an filter bundle field by calling `CustomizeChoicesOptionsEvent::isFilterField(): bool`. In this case, the complete (but cloned) `AdjustFilterOptionsEvent` is passed to the event and the fieldAttributes array is empty. If you don't use filter bundle, you can ignore the filter bundle part.
 
@@ -51,6 +51,39 @@ class CustomizeChoicesOptionsListener
     }
        
 }
+```
+
+### JavaScript Events
+
+Following events can be used to further customize the choices instances: 
+
+Event name | Data | Description
+---------- | ---- | -----------
+hundhChoicesOptions | options | Customize options before instantiating the choice object.
+hundhChoicesNewInstance | instance | Is dispatched right after the choices instance is create.
+
+Example:
+
+```javascript
+/**
+ * @param { CustomEvent } event
+ */
+function onHundhChoicesOptions(event) {
+    let options = event.detail.options;
+    // Customize options
+}
+
+/**
+ * @param { CustomEvent } event
+ */
+function onHundhChoicesNewInstance(event) {
+    let choicesInstance = event.detail.instance;
+    // Work with the choices instance
+}
+
+document.addEventListener('hundhChoicesOptions', onHundhChoicesOptions);
+document.addEventListener('hundhChoicesNewInstance', onHundhChoicesNewInstance);
+
 ```
 
 ### Assets

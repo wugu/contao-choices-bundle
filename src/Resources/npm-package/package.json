@@ -11,6 +11,9 @@
   "author": "Heimrich & Hannot GmbH",
   "license": "MIT",
   "dependencies": {
-    "choices.js": "^4.1"
+    "choices.js": "^9.0"
+  },
+  "jshintConfig": {
+    "esversion": 6
   }
 }

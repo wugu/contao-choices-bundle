@@ -42,8 +42,8 @@ class FrontendAsset
             $this->container->get('huh.encore.asset.frontend')->addActiveEntrypoint('contao-choices-bundle-theme');
         }
 
-        $GLOBALS['TL_JAVASCRIPT']['huh_components_choices'] = 'assets/choices/dist/public/assets/scripts/choices.min.js|static';
-        $GLOBALS['TL_JAVASCRIPT']['contao-choices-bundle']  = 'bundles/heimrichhannotcontaochoices/js/contao-choices-bundle.js|static';
-        $GLOBALS['TL_CSS']['huh_components_choices'] = 'assets/choices/dist/public/assets/styles/choices.min.css|static';
+        $GLOBALS['TL_CSS']['contao-choices-bundle'] = 'bundles/heimrichhannotcontaochoices/assets/choices.css|static';
+        $GLOBALS['TL_JAVASCRIPT']['contao-choices-bundle--library'] = 'bundles/heimrichhannotcontaochoices/assets/choices.js|static';
+        $GLOBALS['TL_JAVASCRIPT']['contao-choices-bundle'] = 'bundles/heimrichhannotcontaochoices/assets/contao-choices-bundle.js|static';
     }
 }
