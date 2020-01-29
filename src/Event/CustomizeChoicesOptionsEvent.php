@@ -43,7 +43,7 @@ class CustomizeChoicesOptionsEvent extends Event
      * @param array $fieldAttributes
      * @param DataContainer|null $dc
      */
-    public function __construct(array $choicesOptions, array $fieldAttributes, ?DataContainer $dc)
+    public function __construct(array $choicesOptions, array $fieldAttributes, $dc)
     {
         $this->choicesOptions = $choicesOptions;
         $this->fieldAttributes = $fieldAttributes;
@@ -93,9 +93,13 @@ class CustomizeChoicesOptionsEvent extends Event
     }
 
     /**
+     * Return the optional datacontainer object from the getAttributesFromDca hook.
+     *
+     * In some legacy code (like ModuleRegistration, as of version 4.4.46), this could also be a module object.
+     *
      * @return DataContainer
      */
-    public function getDc(): ?DataContainer
+    public function getDc()
     {
         return $this->dc;
     }

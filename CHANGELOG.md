@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.1] - 2020-01-29
+- fixed type errors if getAttributesFromDca hook is not called with an DataContainer or null (like in ModuleRegistration)
+
 ## [0.4.0] - 2020-01-23
 - updated library to version 9.0.1
 - library now bundle with this bundle instead of loading an external library

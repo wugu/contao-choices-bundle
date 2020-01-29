@@ -63,8 +63,12 @@ class GetAttributesFromDcaListener
 
     /**
      * @Hook("getAttributesFromDca")
+     *
+     * @param array $attributes
+     * @param DataContainer $dc
+     * @return array
      */
-    public function onGetAttributesFromDca(array $attributes, DataContainer $dc = null): array
+    public function onGetAttributesFromDca(array $attributes, $dc = null): array
     {
         if ($this->closed || !$this->container->get('huh.utils.container')->isFrontend() || !in_array($attributes['type'], ['select', 'text']))
         {
