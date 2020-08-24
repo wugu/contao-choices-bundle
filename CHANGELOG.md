@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.2] - 2020-08-24
+- updated encore bundle integration
+
 ## [0.4.1] - 2020-01-29
 - fixed type errors if getAttributesFromDca hook is not called with an DataContainer or null (like in ModuleRegistration)
 

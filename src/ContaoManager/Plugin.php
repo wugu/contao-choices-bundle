@@ -21,7 +21,7 @@ use HeimrichHannot\FilterBundle\HeimrichHannotContaoFilterBundle;
 use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigPluginInterface
+class Plugin implements BundlePluginInterface, ConfigPluginInterface
 {
     /**
      * {@inheritdoc}
@@ -43,20 +43,13 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
         ];
     }
 
-    public function getExtensionConfig($extensionName, array $extensionConfigs, ContainerBuilder $container)
-    {
-        return ContainerUtil::mergeConfigFile(
-            'huh_encore',
-            $extensionName,
-            $extensionConfigs,
-            __DIR__.'/../Resources/config/config_encore.yml'
-        );
-    }
-
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/listeners.yml');
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/services.yml');
         $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/datacontainers.yml');
+        if (class_exists('HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle')) {
+            $loader->load('@HeimrichHannotContaoChoicesBundle/Resources/config/config_encore.yml');
+        }
     }
 }
