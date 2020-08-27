@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.4] - 2020-08-27
+- fixed customization of choices-options
+
 ## [0.4.3] - 2020-08-27
 - added js event listener for `formhybridToggleSubpaletteComplete`
 
