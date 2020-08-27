@@ -14,46 +14,49 @@ class ChoicesBundle
             return;
         }
         elements.forEach((element) => {
-            let defaultOptions = {};
-            let options = {};
-            if (element.hasAttribute('data-choices-options')) {
-                options = JSON.parse(element.getAttribute('data-choices-options'));
-                if (options.hasOwnProperty('addItemTextString'))
-                {
-                    options.addItemText = (value) => {
-                        return options.addItemTextString;
-                    };
-                    delete options.addItemTextString;
+            let state = element.getAttribute('data-choice');
+            if('active' !== state) {
+                let defaultOptions = {};
+                let options = {};
+                if (element.hasAttribute('data-choices-options')) {
+                    options = JSON.parse(element.getAttribute('data-choices-options'));
+                    if (options.hasOwnProperty('addItemTextString'))
+                    {
+                        options.addItemText = (value) => {
+                            return options.addItemTextString;
+                        };
+                        delete options.addItemTextString;
+                    }
+                    if (options.hasOwnProperty('maxItemTextString'))
+                    {
+                        options.maxItemText = (maxItemCount) => {
+                            return options.maxItemTextString;
+                        };
+                        delete options.maxItemTextString;
+                    }
+                    options = Object.assign(defaultOptions, options);
                 }
-                if (options.hasOwnProperty('maxItemTextString'))
-                {
-                    options.maxItemText = (maxItemCount) => {
-                        return options.maxItemTextString;
-                    };
-                    delete options.maxItemTextString;
-                }
-                options = Object.assign(defaultOptions, options);
+
+                let optionsEvent = new CustomEvent('hundhChoicesOptions', {
+                    bubbles: true,
+                    detail: {
+                        options: options,
+                    },
+                });
+                element.dispatchEvent(optionsEvent);
+
+                let choice = new Choices(element, optionsEvent.detail.options);
+
+                let event = new CustomEvent('hundhChoicesNewInstance', {
+                    bubbles: true,
+                    detail: {
+                        instance: choice,
+                    },
+                });
+                element.dispatchEvent(event);
+
+                ChoicesBundle.choiceInstances.push({element: element, instance: choice});
             }
-
-            let optionsEvent = new CustomEvent('hundhChoicesOptions', {
-                bubbles: true,
-                detail: {
-                    options: options,
-                },
-            });
-            element.dispatchEvent(optionsEvent);
-
-            let choice = new Choices(element, optionsEvent.detail.options);
-
-            let event = new CustomEvent('hundhChoicesNewInstance', {
-                bubbles: true,
-                detail: {
-                    instance: choice,
-                },
-            });
-            element.dispatchEvent(event);
-
-            ChoicesBundle.choiceInstances.push({element: element, instance: choice});
         });
     }
 
