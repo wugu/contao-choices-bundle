@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.5] - 2021-04-08
+- added support for formhybrid formhybrid_ajax_complete event
+- added contao 4.9 rootfallback palette support
+- refactored FrontendAsset to use modern coding standards
+- fixed encore bundle versions lower than 1.5 allowed
+
 ## [0.4.4] - 2020-08-27
 - fixed customization of choices-options
 

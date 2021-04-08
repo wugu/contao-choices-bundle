@@ -12,6 +12,7 @@ $table = 'tl_page';
 $dca = &$GLOBALS['TL_DCA'][$table];
 
 $dca['palettes']['root'] = str_replace('includeLayout', 'includeLayout,useChoicesForSelect,useChoicesForText', $dca['palettes']['root']);
+$dca['palettes']['rootfallback'] = str_replace('includeLayout', 'includeLayout,useChoicesForSelect,useChoicesForText', $dca['palettes']['rootfallback']);
 $dca['palettes']['regular'] = str_replace('includeLayout', 'includeLayout,overrideUseChoicesForSelect,overrideUseChoicesForText', $dca['palettes']['regular']);
 
 $dca['fields']['useChoicesForSelect'] = [
