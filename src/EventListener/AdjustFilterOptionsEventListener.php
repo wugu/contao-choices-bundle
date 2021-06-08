@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
+ *
+ * @license LGPL-3.0-or-later
+ */
+
 namespace HeimrichHannot\ChoicesBundle\EventListener;
 
 use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
@@ -36,7 +42,6 @@ class AdjustFilterOptionsEventListener
         $this->eventDispatcher = $eventDispatcher;
     }
 
-
     public function onAdjustFilterOptions(AdjustFilterOptionsEvent $event)
     {
         $this->container->get(GetAttributesFromDcaListener::class)->close();
@@ -51,41 +56,38 @@ class AdjustFilterOptionsEventListener
 
         $config = $this->container->getParameter('huh.filter');
 
-        if (!isset($config['filter']['types']))
-        {
+        if (!isset($config['filter']['types'])) {
             return;
         }
 
         $filterType = null;
 
-        foreach ($config['filter']['types'] as $type)
-        {
-            if ($type['name'] === $element->type)
-            {
+        foreach ($config['filter']['types'] as $type) {
+            if ($type['name'] === $element->type) {
                 $filterType = $type['type'];
+
                 break;
             }
         }
 
-        if (!$filterType)
-        {
+        if (!$filterType) {
             return;
         }
 
         // select fields are choice'd by default, others not
-        switch ($filterType)
-        {
+        switch ($filterType) {
             case 'choice':
-                if ($element->skipChoicesSupport)
-                {
+                if ($element->skipChoicesSupport) {
                     return;
                 }
+
                 break;
+
             default:
-                if (!$element->addChoicesSupport)
-                {
+                if (!$element->addChoicesSupport) {
                     return;
                 }
+
                 break;
         }
 

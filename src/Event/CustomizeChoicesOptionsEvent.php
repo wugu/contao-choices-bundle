@@ -1,16 +1,12 @@
 <?php
-/**
- * Contao Open Source CMS
+
+/*
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
  *
- * Copyright (c) 2020 Heimrich & Hannot GmbH
- *
- * @author  Thomas Körner <t.koerner@heimrich-hannot.de>
- * @license http://www.gnu.org/licences/lgpl-3.0.html LGPL
+ * @license LGPL-3.0-or-later
  */
 
-
 namespace HeimrichHannot\ChoicesBundle\Event;
-
 
 use Contao\DataContainer;
 use HeimrichHannot\FilterBundle\Event\AdjustFilterOptionsEvent;
@@ -18,8 +14,11 @@ use Symfony\Component\EventDispatcher\Event;
 
 class CustomizeChoicesOptionsEvent extends Event
 {
-
     const NAME = 'huh.choices.customize_choices_options';
+    /**
+     * @var AdjustFilterOptionsEvent
+     */
+    protected $adjustFilterOptionsEvent = null;
     /**
      * @var array
      */
@@ -32,15 +31,10 @@ class CustomizeChoicesOptionsEvent extends Event
      * @var DataContainer|null
      */
     private $dc;
-    /**
-     * @var AdjustFilterOptionsEvent
-     */
-    protected $adjustFilterOptionsEvent = null;
 
     /**
      * CustomizeChoicesOptionsEvent constructor.
-     * @param array $choicesOptions
-     * @param array $fieldAttributes
+     *
      * @param DataContainer|null $dc
      */
     public function __construct(array $choicesOptions, array $fieldAttributes, $dc)
@@ -64,29 +58,18 @@ class CustomizeChoicesOptionsEvent extends Event
     }
 
     /**
-     * Return if field is a filter bundle field or not
-     *
-     * @return bool
+     * Return if field is a filter bundle field or not.
      */
     public function isFilterField(): bool
     {
-        return (null === $this->adjustFilterOptionsEvent);
+        return null === $this->adjustFilterOptionsEvent;
     }
 
-
-
-
-    /**
-     * @return array
-     */
     public function getChoicesOptions(): array
     {
         return $this->choicesOptions;
     }
 
-    /**
-     * @return array
-     */
     public function getFieldAttributes(): array
     {
         return $this->fieldAttributes;
@@ -104,9 +87,6 @@ class CustomizeChoicesOptionsEvent extends Event
         return $this->dc;
     }
 
-    /**
-     * @param array $choicesOptions
-     */
     public function setChoicesOptions(array $choicesOptions): void
     {
         $this->choicesOptions = $choicesOptions;

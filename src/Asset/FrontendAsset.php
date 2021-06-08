@@ -1,16 +1,12 @@
 <?php
-/**
- * Contao Open Source CMS
+
+/*
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
  *
- * Copyright (c) 2019 Heimrich & Hannot GmbH
- *
- * @author  Thomas Körner <t.koerner@heimrich-hannot.de>
- * @license http://www.gnu.org/licences/lgpl-3.0.html LGPL
+ * @license LGPL-3.0-or-later
  */
 
-
 namespace HeimrichHannot\ChoicesBundle\Asset;
-
 
 use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use Psr\Container\ContainerInterface;
@@ -27,10 +23,8 @@ class FrontendAsset implements ServiceSubscriberInterface
      */
     private $container;
 
-
     /**
      * FrontendAsset constructor.
-     * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container, ContainerUtil $containerUtil)
     {
