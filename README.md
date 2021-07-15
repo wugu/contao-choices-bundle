@@ -20,6 +20,36 @@ This bundle offers support for the JavaScript library [Choices.js](https://githu
 
 Active or deactivate choices support on page level (Layout section). You can activate/deactivate it separately for select and text boxes. You can overwrite settings from a parent page.
 
+It is possible to active and deactivate choices support for single field as well. 
+
+Using DCA configuration:
+```php
+['field']['eval']['choicesOptions'] = [
+    'enable' => true|false
+];
+```
+
+Using CustomizeChoicesOptionsEventListener
+```php
+public function onHuhChoicesCustomizeChoicesOptions(CustomizeChoicesOptionsEvent $event)
+{
+    $event->enableChoices();
+    $event->disableChoices();
+}
+```
+
+####NOTE: Choices are enabled by default if activated on page level.
+
+###Configuration
+Each field can be customized via DCA:
+```php
+['field']['eval']['choicesOptions'] = [];
+```
+All options from Choices.js can be found at https://github.com/Choices-js/Choices#setup
+
+#### NOTE: the only option not from choices.js is 
+```'enable' => true|false```
+
 ### Filter Bundle
 
 Choices.js support it automatically added to choice type form fields. It can be disabled in the type configuration. For other config types it can be activated in the configuration.
@@ -41,7 +71,7 @@ namespace HeimrichHannot\CustomBundle\EventListener\CustomizeChoicesOptionsListe
 
 class CustomizeChoicesOptionsListener
 {
-    public function onHuhChoicesCustomizeChoicesOptions(\HeimrichHannot\TrafficLinesBundle\EventListener\CustomizeChoicesOptionsEvent $event)
+    public function onHuhChoicesCustomizeChoicesOptions(\HeimrichHannot\ChoicesBundle\Event\CustomizeChoicesOptionsEvent $event)
     {
         if ($event->isFilterField()) {
             $this->addFilterChoicesOptions($event);
