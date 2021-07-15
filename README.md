@@ -38,16 +38,16 @@ public function onHuhChoicesCustomizeChoicesOptions(CustomizeChoicesOptionsEvent
 }
 ```
 
-####NOTE: Choices are enabled by default if activated on page level.
+> NOTE: Choices are enabled by default if activated on page level.
 
-###Configuration
+### Configuration
 Each field can be customized via DCA:
 ```php
 ['field']['eval']['choicesOptions'] = [];
 ```
 All options from Choices.js can be found at https://github.com/Choices-js/Choices#setup
 
-#### NOTE: the only option not from choices.js is 
+> NOTE: the only option not from choices.js is 
 ```'enable' => true|false```
 
 ### Filter Bundle
