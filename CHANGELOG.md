@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.8] - 2021-07-21
+- fixed UndefinedMethodError in class AdjustFilterOptionsEventListener
+
 ## [0.4.7] - 2021-07-21
 
 - added option do disable each field with dca configuration(#1)
