@@ -101,7 +101,7 @@ class AdjustFilterOptionsEventListener
         $customizeChoicesOptionsEvent->setAdjustFilterOptionsEvent(clone $event);
         $this->eventDispatcher->dispatch(CustomizeChoicesOptionsEvent::NAME, $customizeChoicesOptionsEvent);
 
-        $options['attr']['data-choices'] = '1';
+        $options['attr']['data-choices'] = (int) $event->isChoicesEnabled();
         $options['attr']['data-choices-options'] = json_encode($customizeChoicesOptionsEvent->getChoicesOptions());
 
         $event->setOptions($options);

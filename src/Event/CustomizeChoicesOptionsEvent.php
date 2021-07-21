@@ -31,6 +31,10 @@ class CustomizeChoicesOptionsEvent extends Event
      * @var DataContainer|null
      */
     private $dc;
+    /**
+     * @var bool
+     */
+    private $enabled = false;
 
     /**
      * CustomizeChoicesOptionsEvent constructor.
@@ -40,6 +44,8 @@ class CustomizeChoicesOptionsEvent extends Event
     public function __construct(array $choicesOptions, array $fieldAttributes, $dc)
     {
         $this->choicesOptions = $choicesOptions;
+        $this->applyOptions($choicesOptions);
+
         $this->fieldAttributes = $fieldAttributes;
         $this->dc = $dc;
     }
@@ -90,5 +96,27 @@ class CustomizeChoicesOptionsEvent extends Event
     public function setChoicesOptions(array $choicesOptions): void
     {
         $this->choicesOptions = $choicesOptions;
+    }
+
+    public function isChoicesEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    public function disableChoices(): void
+    {
+        $this->enabled = false;
+    }
+
+    public function enableChoices(): void
+    {
+        $this->enabled = true;
+    }
+
+    private function applyOptions(array $options): void
+    {
+        if (isset($options['enable']) && $options['enable']) {
+            $this->enableChoices();
+        }
     }
 }

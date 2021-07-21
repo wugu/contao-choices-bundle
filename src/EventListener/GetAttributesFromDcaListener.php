@@ -70,6 +70,13 @@ class GetAttributesFromDcaListener
             return $attributes;
         }
 
+        $customOptions = [];
+
+        if (isset($attributes['choicesOptions']) && \is_array($attributes['choicesOptions'])) {
+            $customOptions = $attributes['choicesOptions'];
+        }
+        $customOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray($customOptions);
+
         $this->getPageWithParents();
 
         if (null !== $this->pageParents) {
@@ -78,7 +85,7 @@ class GetAttributesFromDcaListener
 
                 if (true === (bool) $property) {
                     $this->frontendAsset->addFrontendAssets();
-                    $attributes['data-choices'] = 1;
+                    $customOptions['enable'] = true;
                 }
             }
 
@@ -87,19 +94,14 @@ class GetAttributesFromDcaListener
 
                 if (true === (bool) $property) {
                     $this->frontendAsset->addFrontendAssets();
-                    $attributes['data-choices'] = 1;
+                    $customOptions['enable'] = true;
                 }
             }
         }
 
-        $customOptions = [];
-
-        if (isset($attributes['choicesOptions']) && \is_array($attributes['choicesOptions'])) {
-            $customOptions = $attributes['choicesOptions'];
-        }
-        $customOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray($customOptions);
         $event = $this->eventDispatcher->dispatch(CustomizeChoicesOptionsEvent::NAME, new CustomizeChoicesOptionsEvent($customOptions, $attributes, $dc));
 
+        $attributes['data-choices'] = (int) $event->isChoicesEnabled();
         $attributes['data-choices-options'] = json_encode($event->getChoicesOptions());
 
         return $attributes;
