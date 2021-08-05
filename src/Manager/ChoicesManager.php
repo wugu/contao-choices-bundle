@@ -12,18 +12,6 @@ use Contao\Controller;
 
 class ChoicesManager
 {
-    public function getOptionsAsArray(array $customOptions = [], string $table = '', string $field = ''): array
-    {
-        $options = $this->getDefaultOptions();
-
-        if (!empty($table) && empty($field)) {
-            $options = array_merge($options, $this->getOptionsFromDca($table, $field));
-        }
-        $options = array_merge($options, $customOptions);
-
-        return $options;
-    }
-
     public function getOptionsFromDca(string $table, string $field): array
     {
         Controller::loadDataContainer($table);
@@ -33,6 +21,18 @@ class ChoicesManager
         if (isset($dca['fields'][$field]['eval']['choicesOptions']) && \is_array($dca['fields'][$field]['eval']['choicesOptions'])) {
             $options = $dca['fields'][$field]['eval']['choicesOptions'];
         }
+
+        return $options;
+    }
+
+    public function getOptionsAsArray(array $customOptions = [], string $table = '', string $field = ''): array
+    {
+        $options = $this->getDefaultOptions();
+
+        if (!empty($table) && empty($field)) {
+            $options = array_merge($options, $this->getOptionsFromDca($table, $field));
+        }
+        $options = array_merge($options, $customOptions);
 
         return $options;
     }

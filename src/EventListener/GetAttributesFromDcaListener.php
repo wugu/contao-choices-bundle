@@ -12,7 +12,10 @@ use Contao\DataContainer;
 use Contao\PageModel;
 use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
 use HeimrichHannot\ChoicesBundle\Event\CustomizeChoicesOptionsEvent;
-use Psr\Container\ContainerInterface;
+use HeimrichHannot\ChoicesBundle\Manager\ChoicesManager;
+use HeimrichHannot\UtilsBundle\Dca\DcaUtil;
+use HeimrichHannot\UtilsBundle\Model\ModelUtil;
+use HeimrichHannot\UtilsBundle\Util\Utils;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class GetAttributesFromDcaListener
@@ -21,11 +24,25 @@ class GetAttributesFromDcaListener
      * @var bool
      */
     protected $closed = false;
-    private $pageParents = null;
+
     /**
-     * @var ContainerInterface
+     * @var Utils
      */
-    private $container;
+    protected $utils;
+    /**
+     * @var ChoicesManager
+     */
+    protected $choicesManager;
+    /**
+     * @var DcaUtil
+     */
+    protected $dcaUtil;
+    /**
+     * @var ModelUtil
+     */
+    protected $modelUtil;
+
+    private $pageParents = null;
     /**
      * @var FrontendAsset
      */
@@ -40,11 +57,14 @@ class GetAttributesFromDcaListener
      *
      * @param null $pageParents
      */
-    public function __construct(ContainerInterface $container, FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher)
+    public function __construct(FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher, Utils $utils, ChoicesManager $choicesManager, DcaUtil $dcaUtil, ModelUtil $modelUtil)
     {
-        $this->container = $container;
         $this->frontendAsset = $frontendAsset;
         $this->eventDispatcher = $eventDispatcher;
+        $this->utils = $utils;
+        $this->choicesManager = $choicesManager;
+        $this->dcaUtil = $dcaUtil;
+        $this->modelUtil = $modelUtil;
     }
 
     public function close()
@@ -64,7 +84,7 @@ class GetAttributesFromDcaListener
      */
     public function onGetAttributesFromDca(array $attributes, $dc = null): array
     {
-        if ($this->closed || !$this->container->get('huh.utils.container')->isFrontend() || !\in_array($attributes['type'], ['select', 'text'])) {
+        if ($this->closed || !$this->utils->container()->isFrontend() || !\in_array($attributes['type'], ['select', 'text'])) {
             $this->open();
 
             return $attributes;
@@ -75,13 +95,13 @@ class GetAttributesFromDcaListener
         if (isset($attributes['choicesOptions']) && \is_array($attributes['choicesOptions'])) {
             $customOptions = $attributes['choicesOptions'];
         }
-        $customOptions = $this->container->get('huh.choices.manager.choices_manager')->getOptionsAsArray($customOptions);
+        $customOptions = $this->choicesManager->getOptionsAsArray($customOptions);
 
         $this->getPageWithParents();
 
         if (null !== $this->pageParents) {
             if ('select' === $attributes['type']) {
-                $property = $this->container->get('huh.utils.dca')->getOverridableProperty('useChoicesForSelect', $this->pageParents);
+                $property = $this->dcaUtil->getOverridableProperty('useChoicesForSelect', $this->pageParents);
 
                 if (true === (bool) $property) {
                     $this->frontendAsset->addFrontendAssets();
@@ -90,7 +110,7 @@ class GetAttributesFromDcaListener
             }
 
             if ('text' === $attributes['type']) {
-                $property = $this->container->get('huh.utils.dca')->getOverridableProperty('useChoicesForText', $this->pageParents);
+                $property = $this->dcaUtil->getOverridableProperty('useChoicesForText', $this->pageParents);
 
                 if (true === (bool) $property) {
                     $this->frontendAsset->addFrontendAssets();
@@ -113,7 +133,7 @@ class GetAttributesFromDcaListener
         global $objPage;
 
         if (null === $this->pageParents && null !== $objPage) {
-            $this->pageParents = $this->container->get('huh.utils.model')->findParentsRecursively('pid', 'tl_page', $objPage);
+            $this->pageParents = $this->modelUtil->findParentsRecursively('pid', 'tl_page', $objPage);
             $this->pageParents[] = $objPage;
         }
 
