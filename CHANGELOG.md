@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2021-08-05
+## [1.0.0] - 2021-08-05
 - Changed: refactored FrontendAsset
 - Removed: npm-package
 - Removed: deprecated huh.choices.manager.choices_manager service alias
