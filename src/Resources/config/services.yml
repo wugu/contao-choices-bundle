@@ -2,9 +2,16 @@ services:
   _defaults:
     public: true
     autowire: true
+    autoconfigure: true
+
+  HeimrichHannot\ChoicesBundle\:
+    resource: "../../{DataContainer,EventListener,Asset,Manager}/*"
 
   huh.choices.manager.choices_manager:
-    class: HeimrichHannot\ChoicesBundle\Manager\ChoicesManager
-  HeimrichHannot\ChoicesBundle\Manager\ChoicesManager: '@huh.choices.manager.choices_manager'
+    alias: HeimrichHannot\ChoicesBundle\Manager\ChoicesManager
+    deprecated: 'The alias "%alias_id%" is deprecated and will be removed in a future version.'
 
-  HeimrichHannot\ChoicesBundle\Asset\FrontendAsset: ~
+  HeimrichHannot\ChoicesBundle\EventListener\AdjustFilterOptionsEventListener:
+    public: false
+    tags:
+      - { name: kernel.event_listener, event: huh.filter.event.adjust_filter_options_event, method: onAdjustFilterOptions }
