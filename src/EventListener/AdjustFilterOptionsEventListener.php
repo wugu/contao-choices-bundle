@@ -96,6 +96,7 @@ class AdjustFilterOptionsEventListener
         $options = $event->getOptions();
 
         $choicesOptions = $this->choicesManager->getOptionsAsArray([], $table, $element->field ?: '');
+        $choicesOptions['enable'] = true;
 
         $customizeChoicesOptionsEvent = new CustomizeChoicesOptionsEvent($choicesOptions, [], null);
         $customizeChoicesOptionsEvent->setAdjustFilterOptionsEvent(clone $event);
