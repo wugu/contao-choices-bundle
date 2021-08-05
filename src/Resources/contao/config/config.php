@@ -1,7 +1,13 @@
 <?php
 
-/**
- * Hooks
+/*
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
+ *
+ * @license LGPL-3.0-or-later
  */
-$GLOBALS['TL_HOOKS']['getAttributesFromDca']['choices'] = [\HeimrichHannot\ChoicesBundle\EventListener\GetAttributesFromDcaListener::class, 'onGetAttributesFromDca'];
-$GLOBALS['TL_HOOKS']['loadDataContainer']['choices'] = [\HeimrichHannot\ChoicesBundle\EventListener\LoadDataContainerListener::class, 'onLoadDataContainer'];
+
+use HeimrichHannot\ChoicesBundle\EventListener\GetAttributesFromDcaListener;
+use HeimrichHannot\ChoicesBundle\EventListener\LoadDataContainerListener;
+
+$GLOBALS['TL_HOOKS']['getAttributesFromDca']['choices'] = [GetAttributesFromDcaListener::class, 'onGetAttributesFromDca'];
+$GLOBALS['TL_HOOKS']['loadDataContainer']['choices'] = [LoadDataContainerListener::class, 'onLoadDataContainer'];
