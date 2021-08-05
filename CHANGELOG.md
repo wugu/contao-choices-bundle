@@ -2,8 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2021-08-05
+## [0.4.9] - 2021-08-05
 - Changed: optimized service definitions
+- Changed: refactored AdjustFilterOptionsEventListener due coding standards
+- Changed: increased Utils Bundles dependency
 - Fixed: choices always disabled on filter bundle fields
 
 ## [0.4.8] - 2021-07-21
