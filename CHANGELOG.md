@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2021-08-05
+- Removed: npm-package
+
 ## [0.4.9] - 2021-08-05
 - Changed: optimized service definitions
 - Changed: refactored AdjustFilterOptionsEventListener due coding standards
