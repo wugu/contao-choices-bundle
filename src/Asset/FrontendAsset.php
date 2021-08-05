@@ -8,16 +8,17 @@
 
 namespace HeimrichHannot\ChoicesBundle\Asset;
 
-use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
+use HeimrichHannot\EncoreBundle\Asset\FrontendAsset as EncoreFrontendAsset;
+use HeimrichHannot\UtilsBundle\Util\Utils;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
 
 class FrontendAsset implements ServiceSubscriberInterface
 {
     /**
-     * @var ContainerUtil
+     * @var Utils
      */
-    protected $containerUtil;
+    protected $utils;
     /**
      * @var ContainerInterface
      */
@@ -26,21 +27,21 @@ class FrontendAsset implements ServiceSubscriberInterface
     /**
      * FrontendAsset constructor.
      */
-    public function __construct(ContainerInterface $container, ContainerUtil $containerUtil)
+    public function __construct(ContainerInterface $container, Utils $utils)
     {
         $this->container = $container;
-        $this->containerUtil = $containerUtil;
+        $this->utils = $utils;
     }
 
     public function addFrontendAssets(): void
     {
-        if (!$this->containerUtil->isFrontend()) {
+        if (!$this->utils->container()->isFrontend()) {
             return;
         }
 
         if ($this->container->has("HeimrichHannot\EncoreBundle\Asset\FrontendAsset")) {
-            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-choices-bundle');
-            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-choices-bundle-theme');
+            $this->container->get(EncoreFrontendAsset::class)->addActiveEntrypoint('contao-choices-bundle');
+            $this->container->get(EncoreFrontendAsset::class)->addActiveEntrypoint('contao-choices-bundle-theme');
         }
 
         $GLOBALS['TL_CSS']['contao-choices-bundle'] = 'bundles/heimrichhannotcontaochoices/assets/choices.css|static';

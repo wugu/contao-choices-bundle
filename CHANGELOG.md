@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2021-08-05
+- Changed: refactored FrontendAsset
 - Removed: npm-package
+- Fixed: added missing symfony/dependency-injection dependency
 
 ## [0.4.9] - 2021-08-05
 - Changed: optimized service definitions
