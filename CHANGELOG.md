@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased ] - 2021-08-06
+- Changed: enhances readme
+
 ## [1.0.0] - 2021-08-05
 - Changed: refactored FrontendAsset
 - Removed: npm-package

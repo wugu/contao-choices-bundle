@@ -67,11 +67,11 @@ To customize options passed to the choices.js library, you can use the `Customiz
 ```
 
 ```php
-namespace HeimrichHannot\CustomBundle\EventListener\CustomizeChoicesOptionsListener;
+use HeimrichHannot\ChoicesBundle\Event\CustomizeChoicesOptionsEvent;
 
 class CustomizeChoicesOptionsListener
 {
-    public function onHuhChoicesCustomizeChoicesOptions(\HeimrichHannot\ChoicesBundle\Event\CustomizeChoicesOptionsEvent $event)
+    public function __invoke(CustomizeChoicesOptionsEvent $event)
     {
         if ($event->isFilterField()) {
             $this->addFilterChoicesOptions($event);
@@ -79,7 +79,6 @@ class CustomizeChoicesOptionsListener
             $this->addFieldChoicesOptions($event);
         }       
     }
-       
 }
 ```
 
@@ -116,15 +115,19 @@ document.addEventListener('hundhChoicesNewInstance', onHundhChoicesNewInstance);
 
 ```
 
-### Assets
-
-Bundle assets are provided as [yarn package](https://yarn.pm/@hundh/contao-choices-bundle). Sources and JavaScript documentation can be found in [`src/Resources/npm-package`](https://github.com/heimrichhannot/contao-choices-bundle/tree/master/src/Resources/npm-package).
-
 ### Custom usage
 If you use the library in a different way than this bundle provides (e.g. a custom module), use the frontend asset service to dynamically add the frontend assets. 
 
 ```php
-/** @var Symfony\Component\DependencyInjection\ContainerInterface $container **/
-$container->get(FrontendAsset::class)->addFrontendAssets();
+use HeimrichHannot\ChoicesBundle\Asset\FrontendAsset;
+
+class MyClass 
+{
+    private FrontendAsset $frontendAsset;
+
+    public function action() {
+        $this->frontendAsset->addFrontendAssets();
+    }
+}
 ```
 
