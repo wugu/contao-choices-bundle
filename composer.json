@@ -4,9 +4,9 @@
   "description": "This bundle offers support for choices.js for the Contao CMS.",
   "license": "LGPL-3.0-or-later",
   "require": {
-    "php": "^7.1",
+    "php": "^8.0",
     "ext-json": "*",
-    "contao/core-bundle": "^4.4",
+    "contao/core-bundle": "^4.9",
     "heimrichhannot/contao-utils-bundle": "^2.196",
     "psr/container": "^1.0|^2.0",
     "symfony/dependency-injection": "^3.4|^4.4"
